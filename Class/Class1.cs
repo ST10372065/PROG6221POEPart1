@@ -22,7 +22,7 @@ namespace PROG6221POEPart1.Class
                 Unit = unit;
                 originalQuantity = quantity;
             }
-
+        }
 
     }
 }

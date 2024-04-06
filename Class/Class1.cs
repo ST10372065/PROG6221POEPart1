@@ -24,5 +24,22 @@ namespace PROG6221POEPart1.Class
             }
         }
 
+        public void RecipeDetails()
+        {
+            Console.Write("Enter the number of ingredients: ");
+            int numIngredients = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < numIngredients; i++)
+            {
+                Console.Write($"Enter ingredient {i + 1} name: ");
+                string name = Console.ReadLine();
+                Console.Write($"Enter ingredient {i + 1} quantity: ");
+                double quantity = double.Parse(Console.ReadLine());
+                Console.Write($"Enter ingredient {i + 1} unit of measurement: ");
+                string unit = Console.ReadLine();
+            }
+
+
+        }
     }
 }

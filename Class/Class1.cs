@@ -8,23 +8,21 @@ namespace PROG6221POEPart1.Class
 {
     internal class Class1
     {
-        public static void Ingredients()
+        class Ingredient
         {
-            Console.WriteLine("Please enter the amount of ingredients");
-            String numIngr = Console.ReadLine();
+            public string Name { get; set; }
+            public double Quantity { get; private set; }
+            public string Unit { get; set; }
+            private double originalQuantity;
 
-            int numIngredients;
-
-            if (int.TryParse(numIngr, out numIngredients)) //convert string to int
+            public Ingredient(string name, double quantity, string unit)
             {
-                string numberAsString = numIngredients.ToString(); // Convert int to string
-                Console.WriteLine($"You entered: {numberAsString}");
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please enter an integer.");
+                Name = name;
+                Quantity = quantity;
+                Unit = unit;
+                originalQuantity = quantity;
             }
 
-        }
+
     }
 }

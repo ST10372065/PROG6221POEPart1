@@ -11,8 +11,9 @@ namespace PROG6221POEPart1
     {
         static void Main(string[] args)
         {
-            PROG6221POEPart1.Class.Class1 cls1 = new Class.Class1();
-            Class1.Ingredients();
+            //PROG6221POEPart1.Class.Class1 cls1 = new Class.Class1();
+
+            Class1 recipe = new Class1();
             bool conLoop = true;
 
             while(conLoop)
@@ -23,6 +24,14 @@ namespace PROG6221POEPart1
                 Console.WriteLine("4. Reset recipe quantities");
                 Console.WriteLine("5. Clear recipe data");
                 Console.WriteLine("6. Exit");
+
+                int choice = int.Parse(Console.ReadLine());
+
+                switch(choice)
+                {
+                    case 1: recipe.RecipeDetails();
+                        break;
+                }
             }
 
             

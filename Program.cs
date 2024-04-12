@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,15 +28,28 @@ namespace PROG6221POEPart1
                 Console.WriteLine("6. Exit");
 
                 int choice = int.Parse(Console.ReadLine());
+                Console.Clear();
 
                 switch(choice)
                 {
                     case 1: recipe.RecipeDetails();
+                        DisplayMenu(recipe);
                         break;
+                    case 6: conLoop = false;
+                        break;
+                    default: Console.WriteLine("Please enter a vaid option.");
+                        break;
+
                 }
             }
 
-            
+          
+        }
+        
+        static void DisplayMenu(Class1 recipe)
+        {
+            Console.WriteLine("\nPress enter to continue...");
+            Console.ReadLine();
         }
     }
 }

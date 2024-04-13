@@ -8,8 +8,7 @@ namespace PROG6221POEPart1.Class
 {
     internal class Class1
     {
-        private List<Ingredient> ingredients = new List<Ingredient>();
-        private List<Step> steps = new List<Step>();
+        private List<Recipe> recipes = new List<Recipe>();
         class Ingredient
         {
             public string Name { get; set; }
@@ -35,13 +34,64 @@ namespace PROG6221POEPart1.Class
             }
         }
 
+        class Recipe
+        {
+            public string Name { get; set; }
+            private List<Ingredient> ingredients = new List<Ingredient>();
+            private List<Step> steps = new List<Step>();
+
+            public Recipe(string name)
+            {
+                Name = name;
+            }
+
+            public void addIngredient(Ingredient ingredient)
+            {
+                ingredients.Add(ingredient);
+
+            }
+
+            public void addStep(Step step)
+            {
+                steps.Add(step);
+            }
+
+            public void displayRecipe()
+            {
+                Console.WriteLine($"Recipe: {Name}");
+                Console.WriteLine($"Ingredients: ");
+                
+                for(int i = 0; i < ingredients.Count; i++)
+                {
+                    Ingredient ingredient = ingredients[i];
+                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Name}");
+                    Console.WriteLine($"Quantity of ingredient {i + 1}: {ingredient.Quantity}{ingredient.Unit}");
+                }
+
+                Console.WriteLine("\nSteps");
+                int stepNumber = 1;
+                foreach(Step step in steps)
+                {
+                    Console.WriteLine($"{stepNumber}. {step.Description}");
+                    stepNumber++;
+                }
+            }
+        }
+
         public void RecipeDetails()
         {
-            Console.Write("please enter the number of ingredients: ");
-            int numIngredients = int.Parse(Console.ReadLine());
             string name = "";
             double quantity = 0;
             string unit = "";
+
+            Console.WriteLine("Please enter the recipe name: ");
+            string recipeName = Console.ReadLine();
+
+            Recipe newRecipe = new Recipe(recipeName);
+
+            Console.Write("please enter the number of ingredients: ");
+            int numIngredients = int.Parse(Console.ReadLine());
+            
 
             for (int i = 0; i < numIngredients; i++)
             {
@@ -51,7 +101,7 @@ namespace PROG6221POEPart1.Class
                 bool QuantityValid;
                 do
                 {
-                    Console.Write($"Enter ingredient {i + 1}'s quantity: ");
+                    Console.Write($"Enter " + name +"'s quantity:");
                     QuantityValid = double.TryParse(Console.ReadLine(), out quantity);
                     if (!QuantityValid)
                     {
@@ -59,11 +109,11 @@ namespace PROG6221POEPart1.Class
                     }
                 } while (!QuantityValid);
 
-                Console.Write($"Enter ingredient {i + 1}'s unit of measurement: ");
+                Console.Write($"Enter " + name + "'s unit of measurement: ");
                 unit = Console.ReadLine();
                 
                 Ingredient ingredient = new Ingredient(name, quantity, unit);
-                ingredients.Add(ingredient);
+                newRecipe.addIngredient(ingredient);
             }
 
             Console.WriteLine("Please enter the nuber of steps required.");
@@ -74,18 +124,14 @@ namespace PROG6221POEPart1.Class
                 Console.WriteLine($"Please enter step {i + 1}: ");
                 string stepDisc = Console.ReadLine();
                 Step step = new Step(stepDisc);
-                steps.Add(step);
+                newRecipe.addStep(step);
             }
-            //Console.Clear();
+            recipes.Add(newRecipe);
+            Console.Clear();
+        }
 
-            /*for (int i = 0; i < numIngredients; i++)
-            {
-                Console.WriteLine($"Ingredient {i + 1}:" + name);
-                Console.WriteLine($"Quantity of ingredient {i + 1}:" + quantity);
-                Console.WriteLine($"Unit of measurement {i + 1}:" + unit);
-            }*/
-
-
+        public void Displayrecipe()
+        {
 
         }
     }

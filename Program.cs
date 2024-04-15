@@ -17,6 +17,7 @@ namespace PROG6221POEPart1
 
             Class1 recipeManager = new Class1();
             bool conLoop = true;
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             while(conLoop)
             {

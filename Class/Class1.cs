@@ -9,6 +9,7 @@ namespace PROG6221POEPart1.Class
     internal class Class1
     {
         private List<Recipe> recipes = new List<Recipe>();
+        
         public class Ingredient
         {
             public string Name { get; set; }
@@ -29,8 +30,8 @@ namespace PROG6221POEPart1.Class
             {
                 double scaledQuantity = originalQuantity * scalingFactor;
 
-                // Conversions for common units
-                if (Unit.Equals("tablespoon", StringComparison.OrdinalIgnoreCase))
+
+                if ((Unit.Equals("tablespoon", StringComparison.OrdinalIgnoreCase) || (Unit.Equals("tablespoons", StringComparison.OrdinalIgnoreCase))))
                 {
                     if (scaledQuantity >= 16)
                     {

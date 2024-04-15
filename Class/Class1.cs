@@ -319,5 +319,27 @@ namespace PROG6221POEPart1.Class
             Console.WriteLine($"Ingredient quantities for '{selectedRecipe.Name}' have been reset to original values.");
         }
 
+        public void ClearRecipe()
+        {
+            Console.WriteLine("Are you sure you want to clear ALL recipe data? (yes/no)");
+            string confirmation = Console.ReadLine();
+
+            if (string.Equals(confirmation, "yes", StringComparison.OrdinalIgnoreCase))
+            {
+                recipes.Clear();
+                Console.WriteLine("All recipe data has been cleared.");
+            }
+            else if (string.Equals(confirmation, "no", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("Recipes were not deleted");
+            }
+            else
+            {
+                Console.WriteLine("Please enter 'yes' or 'no'.");
+            }
+
+
+
+        }
     }
 }

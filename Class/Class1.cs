@@ -18,7 +18,7 @@ namespace PROG6221POEPart1.Class
             private double originalQuantity;
             private string originalUnit;
 
-            public Ingredient(string name, double quantity, string unit)
+            public Ingredient(string name, double quantity, string unit)    //constructor for ingredient properties
             {
                 Name = name;
                 Quantity = quantity;
@@ -26,14 +26,15 @@ namespace PROG6221POEPart1.Class
                 originalQuantity = quantity;
                 originalUnit = unit;
             }
-            public void ScaleQuantity(double scalingFactor)
+
+            public void ScaleQuantity(double scalingFactor) //method to scale quantities of the ingredients
             {
                 double scaledQuantity = originalQuantity * scalingFactor;
 
 
-                if ((Unit.Equals("tablespoon", StringComparison.OrdinalIgnoreCase) || (Unit.Equals("tablespoons", StringComparison.OrdinalIgnoreCase))))
+                if ((Unit.Equals("tablespoon", StringComparison.OrdinalIgnoreCase) || (Unit.Equals("tablespoons", StringComparison.OrdinalIgnoreCase))))    //if tablespoon or tablespoons are the entered unit of measurement and the quanity must be converted to cups it is done here
                 {
-                    if (scaledQuantity >= 16)
+                    if (scaledQuantity >= 16)   //16 tablespoons = 1 cup
                     {
                         int cups = (int)(scaledQuantity / 16);
                         scaledQuantity -= cups * 16;
@@ -42,7 +43,7 @@ namespace PROG6221POEPart1.Class
                         if (scaledQuantity > 0)
                         {
                             Quantity += scaledQuantity / 16.0;
-                            Unit += "s and " + scaledQuantity % 16 + " tablespoon(s)";
+                            Unit += "s and " + scaledQuantity % 16 + " tablespoon(s)";  //this is if it is required to say 1 cup and 7 tablespons for example
                         }
                     }
                     else
@@ -50,42 +51,42 @@ namespace PROG6221POEPart1.Class
                         Quantity = scaledQuantity;
                     }
                 }
-                else if (Unit.Equals("teaspoon", StringComparison.OrdinalIgnoreCase))
+                else if ((Unit.Equals("teaspoon", StringComparison.OrdinalIgnoreCase) || (Unit.Equals("teaspoons", StringComparison.OrdinalIgnoreCase))))   //same as tablespoon to cup this time it is just teaspoon to tablespoon
                 {
-                    if (scaledQuantity >= 3)
+                    if (scaledQuantity >= 3)    //3 teaspoons = 1 tablespoon
                     {
                         int tablespoons = (int)(scaledQuantity / 3);
-                        scaledQuantity -= tablespoons * 3;
-                        Quantity = tablespoons;
+                        scaledQuantity -= tablespoons * 3;  //adjust scaled quantity to remove portion represented by whole tablespoons
+                        Quantity = tablespoons;     //update quantity property to store the number of tablespoons
                         Unit = "tablespoon";
-                        if (scaledQuantity > 0)
+                        if (scaledQuantity > 0)     //check to see if there are any remaining teaspoons after converting
                         {
                             Quantity += scaledQuantity / 3.0;
-                            Unit += "s and " + scaledQuantity % 3 + " teaspoon(s)";
+                            Unit += "s and " + scaledQuantity % 3 + " teaspoon(s)";     // to erts if there are leftover teaspoons
                         }
                     }
                     else
                     {
-                        Quantity = scaledQuantity;
+                        Quantity = scaledQuantity;  // Assign the scaled quantity directly to the Quantity property if the quantity is less than 3 teaspoons
                     }
                 }
                 else
                 {
-                    Quantity = scaledQuantity;
+                    Quantity = scaledQuantity;  // Assign the scaled quantity directly to the Quantity property if the unit is not "teaspoon(s)"
                 }
             }
 
             public void ResetQuantity()
             {
-                Quantity = originalQuantity;
-                Unit = originalUnit;
+                Quantity = originalQuantity;    //resets to original quantity
+                Unit = originalUnit;            //resets to orginal unit
             }
         }
 
 
         class Step
         {
-            public string Description { get; set; }
+            public string Description { get; set; } //getter and setter
             public Step(string description)
             {
                 Description = description;
@@ -95,8 +96,8 @@ namespace PROG6221POEPart1.Class
         class Recipe
         {
             public string Name { get; set; }
-            private List<Ingredient> ingredients = new List<Ingredient>();
-            private List<Step> steps = new List<Step>();
+            private List<Ingredient> ingredients = new List<Ingredient>();      //private list to store ingredients of recipe
+            private List<Step> steps = new List<Step>();        //private list to store steps of recipe
 
             public Recipe(string name)
             {
@@ -105,55 +106,55 @@ namespace PROG6221POEPart1.Class
 
             public void addIngredient(Ingredient ingredient)
             {
-                ingredients.Add(ingredient);
+                ingredients.Add(ingredient);        //add the ingredients to the iingredient list
 
             }
 
             public void addStep(Step step)
             {
-                steps.Add(step);
+                steps.Add(step);        //add the steps to step list
             }
 
             public void scaleRecipe(double scale)
             {
-                foreach (Ingredient ingredient in ingredients)
+                foreach (Ingredient ingredient in ingredients)  //loop through each ingredient in the recipe
                 {
-                    ingredient.ScaleQuantity(scale);
-                }
+                    ingredient.ScaleQuantity(scale);        //scale quantity of current ingredient to the provied scaling factor
+                }   
             }
 
             public void displayIngredients()
             {
                 for (int i = 0; i < ingredients.Count; i++)
                 {
-                    Ingredient ingredient = ingredients[i];
-                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}");
+                    Ingredient ingredient = ingredients[i];         //get the current ingredient
+                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}");     //displays the detail of the ingredient
                 }
             }
 
             public void displayRecipe()
             {
-                Console.WriteLine($"Recipe: {Name}");
-                Console.WriteLine($"Ingredients: ");
+                Console.WriteLine($"Recipe: {Name}");       //displays name
+                Console.WriteLine($"Ingredients: ");        //displays ingredients
 
-                for (int i = 0; i < ingredients.Count; i++)
+                for (int i = 0; i < ingredients.Count; i++)     //loop through each ingredient in the recipe
                 {
-                    Ingredient ingredient = ingredients[i];
-                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Name}");
+                    Ingredient ingredient = ingredients[i];     //gets current ingredient
+                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Name}");        //displays the name of the current ingredient
 
                 }
-                for (int i = 0; i < ingredients.Count; i++)
+                for (int i = 0; i < ingredients.Count; i++) //loops through each ingredient again to display their quantity
                 {
                     Ingredient ingredient = ingredients[i];
-                    Console.WriteLine($"Quantity of ingredient {i + 1}: {ingredient.Quantity} {ingredient.Unit}");
+                    Console.WriteLine($"Quantity of ingredient {i + 1}: {ingredient.Quantity} {ingredient.Unit}");      //gets the quantity and unit of measurement for the current ingredient
                 }
 
                 Console.WriteLine("\nSteps");
                 int stepNumber = 1;
-                foreach (Step step in steps)
+                foreach (Step step in steps)    //loops through each step in the recipe
                 {
-                    Console.WriteLine($"{stepNumber}. {step.Description}");
-                    stepNumber++;
+                    Console.WriteLine($"{stepNumber}. {step.Description}");     //displays the step number and the step itself
+                    stepNumber++;       //increment step number
                 }
             }
 

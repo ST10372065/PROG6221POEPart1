@@ -27,9 +27,11 @@ namespace PROG6221POEPart1
                 Console.WriteLine("5. Clear recipe data");
                 Console.WriteLine("6. Exit");
 
+                //read user input
                 int choice = int.Parse(Console.ReadLine());
                 Console.Clear();
 
+                //handling user choice, selects which method to use
                 switch(choice)
                 {
                     case 1: recipeManager.RecipeDetails();
@@ -49,7 +51,8 @@ namespace PROG6221POEPart1
                         break;
                     case 6: conLoop = false;
                         break;
-                    default: Console.WriteLine("Please enter a vaid option.");
+                    default: Console.Clear();
+                        Console.WriteLine("Please enter a vaid option.");
                         break;
 
                 }

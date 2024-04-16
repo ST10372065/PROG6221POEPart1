@@ -17,8 +17,9 @@ namespace PROG6221POEPart1.Class
             public string Unit { get; set; }
             private double originalQuantity;
             private string originalUnit;
-
-            public Ingredient(string name, double quantity, string unit)    //constructor for ingredient properties
+                
+            //constructor for ingredient properties
+            public Ingredient(string name, double quantity, string unit)    
             {
                 Name = name;
                 Quantity = quantity;
@@ -27,14 +28,15 @@ namespace PROG6221POEPart1.Class
                 originalUnit = unit;
             }
 
-            public void ScaleQuantity(double scalingFactor) //method to scale quantities of the ingredients
+            //method to scale quantities of the ingredients
+            public void ScaleQuantity(double scalingFactor) 
             {
                 double scaledQuantity = originalQuantity * scalingFactor;
 
-
-                if ((Unit.Equals("tablespoon", StringComparison.OrdinalIgnoreCase) || (Unit.Equals("tablespoons", StringComparison.OrdinalIgnoreCase))))    //if tablespoon or tablespoons are the entered unit of measurement and the quanity must be converted to cups it is done here
-                {
-                    if (scaledQuantity >= 16)   //16 tablespoons = 1 cup
+                //if tablespoon or tablespoons are the entered unit of measurement and the quanity must be converted to cups it is done here
+                if ((Unit.Equals("tablespoon", StringComparison.OrdinalIgnoreCase) || (Unit.Equals("tablespoons", StringComparison.OrdinalIgnoreCase))))    
+                {   //16 tablespoons = 1 cup
+                    if (scaledQuantity >= 16)   
                     {
                         int cups = (int)(scaledQuantity / 16);
                         scaledQuantity -= cups * 16;
@@ -43,50 +45,58 @@ namespace PROG6221POEPart1.Class
                         if (scaledQuantity > 0)
                         {
                             Quantity += scaledQuantity / 16.0;
-                            Unit += "s and " + scaledQuantity % 16 + " tablespoon(s)";  //this is if it is required to say 1 cup and 7 tablespons for example
+                            //this is if it is required to say 1 cup and 7 tablespons for example
+                            Unit += "s and " + scaledQuantity % 16 + " tablespoon(s)";  
                         }
                     }
                     else
                     {
                         Quantity = scaledQuantity;
                     }
-                }
-                else if ((Unit.Equals("teaspoon", StringComparison.OrdinalIgnoreCase) || (Unit.Equals("teaspoons", StringComparison.OrdinalIgnoreCase))))   //same as tablespoon to cup this time it is just teaspoon to tablespoon
+                } //same as tablespoon to cup this time it is just teaspoon to tablespoon
+                else if ((Unit.Equals("teaspoon", StringComparison.OrdinalIgnoreCase) || (Unit.Equals("teaspoons", StringComparison.OrdinalIgnoreCase))))  
                 {
-                    if (scaledQuantity >= 3)    //3 teaspoons = 1 tablespoon
+                    //3 teaspoons = 1 tablespoon
+                    if (scaledQuantity >= 3)    
                     {
                         int tablespoons = (int)(scaledQuantity / 3);
-                        scaledQuantity -= tablespoons * 3;  //adjust scaled quantity to remove portion represented by whole tablespoons
-                        Quantity = tablespoons;     //update quantity property to store the number of tablespoons
+                        //adjust scaled quantity to remove portion represented by whole tablespoons
+                        scaledQuantity -= tablespoons * 3;
+                        //update quantity property to store the number of tablespoons  
+                        Quantity = tablespoons;     
                         Unit = "tablespoon";
-                        if (scaledQuantity > 0)     //check to see if there are any remaining teaspoons after converting
+                        //check to see if there are any remaining teaspoons after converting
+                        if (scaledQuantity > 0)     
                         {
                             Quantity += scaledQuantity / 3.0;
-                            Unit += "s and " + scaledQuantity % 3 + " teaspoon(s)";     // to erts if there are leftover teaspoons
+                            // to erts if there are leftover teaspoons
+                            Unit += "s and " + scaledQuantity % 3 + " teaspoon(s)";     
                         }
                     }
                     else
-                    {
-                        Quantity = scaledQuantity;  // Assign the scaled quantity directly to the Quantity property if the quantity is less than 3 teaspoons
+                    {// Assign the scaled quantity directly to the Quantity property if the quantity is less than 3 teaspoons
+                        Quantity = scaledQuantity;  
                     }
                 }
                 else
-                {
-                    Quantity = scaledQuantity;  // Assign the scaled quantity directly to the Quantity property if the unit is not "teaspoon(s)"
+                {// Assign the scaled quantity directly to the Quantity property if the unit is not "teaspoon(s)"
+                    Quantity = scaledQuantity;  
                 }
             }
 
             public void ResetQuantity()
-            {
-                Quantity = originalQuantity;    //resets to original quantity
-                Unit = originalUnit;            //resets to orginal unit
+            {//resets to original quantity
+                Quantity = originalQuantity;
+                //resets to orginal unit    
+                Unit = originalUnit;            
             }
         }
 
 
         class Step
         {
-            public string Description { get; set; } //getter and setter
+            //getter and setter
+            public string Description { get; set; } 
             public Step(string description)
             {
                 Description = description;
@@ -96,8 +106,10 @@ namespace PROG6221POEPart1.Class
         class Recipe
         {
             public string Name { get; set; }
-            private List<Ingredient> ingredients = new List<Ingredient>();      //private list to store ingredients of recipe
-            private List<Step> steps = new List<Step>();        //private list to store steps of recipe
+            //private list to store ingredients of recipe
+            private List<Ingredient> ingredients = new List<Ingredient>(); 
+            //private list to store steps of recipe     
+            private List<Step> steps = new List<Step>();        
 
             public Recipe(string name)
             {
@@ -106,20 +118,24 @@ namespace PROG6221POEPart1.Class
 
             public void addIngredient(Ingredient ingredient)
             {
-                ingredients.Add(ingredient);        //add the ingredients to the iingredient list
+                //add the ingredients to the iingredient list
+                ingredients.Add(ingredient);        
 
             }
 
             public void addStep(Step step)
             {
-                steps.Add(step);        //add the steps to step list
+                //add the steps to step list
+                steps.Add(step);        
             }
 
             public void scaleRecipe(double scale)
             {
-                foreach (Ingredient ingredient in ingredients)  //loop through each ingredient in the recipe
+                //loop through each ingredient in the recipe
+                foreach (Ingredient ingredient in ingredients)  
                 {
-                    ingredient.ScaleQuantity(scale);        //scale quantity of current ingredient to the provied scaling factor
+                    //scale quantity of current ingredient to the provied scaling factor
+                    ingredient.ScaleQuantity(scale);        
                 }   
             }
 
@@ -127,34 +143,46 @@ namespace PROG6221POEPart1.Class
             {
                 for (int i = 0; i < ingredients.Count; i++)
                 {
-                    Ingredient ingredient = ingredients[i];         //get the current ingredient
-                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}");     //displays the detail of the ingredient
+                    //get the current ingredient
+                    Ingredient ingredient = ingredients[i];         
+                    //displays the detail of the ingredient
+                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}");     
                 }
             }
 
             public void displayRecipe()
             {
-                Console.WriteLine($"Recipe: {Name}");       //displays name
-                Console.WriteLine($"Ingredients: ");        //displays ingredients
+                //displays name
+                Console.WriteLine($"Recipe: {Name}"); 
+                //displays ingredients      
+                Console.WriteLine($"Ingredients: ");        
 
-                for (int i = 0; i < ingredients.Count; i++)     //loop through each ingredient in the recipe
+                //loop through each ingredient in the recipe
+                for (int i = 0; i < ingredients.Count; i++)     
                 {
-                    Ingredient ingredient = ingredients[i];     //gets current ingredient
-                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Name}");        //displays the name of the current ingredient
+                    //gets current ingredient
+                    Ingredient ingredient = ingredients[i];     
+                    //displays the name of the current ingredient
+                    Console.WriteLine($"Ingredient {i + 1}: {ingredient.Name}");        
 
                 }
-                for (int i = 0; i < ingredients.Count; i++) //loops through each ingredient again to display their quantity
+                //loops through each ingredient again to display their quantity
+                for (int i = 0; i < ingredients.Count; i++) 
                 {
                     Ingredient ingredient = ingredients[i];
-                    Console.WriteLine($"Quantity of ingredient {i + 1}: {ingredient.Quantity} {ingredient.Unit}");      //gets the quantity and unit of measurement for the current ingredient
+                    //gets the quantity and unit of measurement for the current ingredient
+                    Console.WriteLine($"Quantity of ingredient {i + 1}: {ingredient.Quantity} {ingredient.Unit}");      
                 }
 
                 Console.WriteLine("\nSteps");
                 int stepNumber = 1;
-                foreach (Step step in steps)    //loops through each step in the recipe
+                //loops through each step in the recipe
+                foreach (Step step in steps)    
                 {
-                    Console.WriteLine($"{stepNumber}. {step.Description}");     //displays the step number and the step itself
-                    stepNumber++;       //increment step number
+                    //displays the step number and the step itself
+                    Console.WriteLine($"{stepNumber}. {step.Description}");     
+                    //increment step number
+                    stepNumber++;       
                 }
             }
 
@@ -162,36 +190,44 @@ namespace PROG6221POEPart1.Class
             {
                 foreach(Ingredient ingredient in ingredients)
                 {
-                    ingredient.ResetQuantity();
+                    //reset the quantity of current ingredient to original value
+                    ingredient.ResetQuantity();     
                 }
             }
         }
 
-        public void DisplayRecipe() // Making the method public
+        // Making the method public
+        public void DisplayRecipe() 
         {
-            if (recipes.Count == 0)
+            //checcks if there are recipes in the list
+            if (recipes.Count == 0)     
             {
                 Console.WriteLine("No recipes found. Please enter a recipe first.");
                 return;
             }
 
             Console.WriteLine("Select a recipe to display: ");
-            for (int i = 0; i < recipes.Count; i++)
+
+            //displays a list of available recipes
+            for (int i = 0; i < recipes.Count; i++)     
             {
-                Console.WriteLine($"{i + 1}. {recipes[i].Name}");
+                //displays index and nae of each recipe
+                Console.WriteLine($"{i + 1}. {recipes[i].Name}");       
             }
 
             Console.Write("Enter the recipe number: ");
             int recipeNumber = int.Parse(Console.ReadLine());
-
-            if (recipeNumber < 1 || recipeNumber > recipes.Count)
+            
+            //checks if it is a valid recipe number
+            if (recipeNumber < 1 || recipeNumber > recipes.Count)       
             {
                 Console.WriteLine("Invalid recipe number.");
                 return;
             }
-
-            Recipe selectedRecipe = recipes[recipeNumber - 1];
-            selectedRecipe.displayRecipe();
+            //gets recipe from object
+            Recipe selectedRecipe = recipes[recipeNumber - 1]; 
+            //displays details of selected recipe using displayRecipe     
+            selectedRecipe.displayRecipe();     
         }
 
         public void RecipeDetails()
@@ -208,100 +244,126 @@ namespace PROG6221POEPart1.Class
             Console.Write("please enter the number of ingredients: ");
             int numIngredients = int.Parse(Console.ReadLine());
 
-
-            for (int i = 0; i < numIngredients; i++)
+            //loops through each ingredient
+            for (int i = 0; i < numIngredients; i++)        
             {
-                Console.Write($"Enter ingredient {i + 1}'s name: ");
+                //enter name of ingredient
+                Console.Write($"Enter ingredient {i + 1}'s name: ");        
                 name = Console.ReadLine();
 
-                bool QuantityValid;
+                //bool used for error handling
+                bool QuantityValid;     
+                //repeats until a process is valid
                 do
-                {
+                {       
                     Console.Write($"Enter " + name + "'s quantity: ");
                     QuantityValid = double.TryParse(Console.ReadLine(), out quantity);
-                    if (!QuantityValid)
+                    //not a number an error message appears
+                    if (!QuantityValid)     
                     {
-                        Console.WriteLine("Please enter only a number.");
+                        Console.WriteLine("Please enter only a number.");   
                     }
-                } while (!QuantityValid);
+                //continues to loop untila valid quantity is entered
+                } while (!QuantityValid);       
 
                 Console.Write($"Enter " + name + "'s unit of measurement: ");
                 unit = Console.ReadLine();
 
-                Ingredient ingredient = new Ingredient(name, quantity, unit);
-                newRecipe.addIngredient(ingredient);
+                //create a new ingredient object with information from above
+                Ingredient ingredient = new Ingredient(name, quantity, unit); 
+                //add the new ingredient to the recipe being constructed  
+                newRecipe.addIngredient(ingredient);        
             }
 
             Console.WriteLine("Please enter the number of steps required.");
-            int numStep = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < numStep; i++)
+            //user enters the number of steps required
+            int numStep = int.Parse(Console.ReadLine());        
+            //loops the amoun tof times the user entered for steps
+            for (int i = 0; i < numStep; i++)       
             {
-                Console.WriteLine($"Please enter step {i + 1}: ");
+                //user enters the step
+                Console.WriteLine($"Please enter step {i + 1}: ");      
                 string stepDisc = Console.ReadLine();
-                Step step = new Step(stepDisc);
-                newRecipe.addStep(step);
+                //create a new step object with collected description
+                Step step = new Step(stepDisc);   
+                //add the new step to the recipe being constructed 
+                newRecipe.addStep(step);            
             }
-            recipes.Add(newRecipe);
+            //adds newly created recipe to the list of recipes
+            recipes.Add(newRecipe);     
             Console.Clear();
         }
 
+        
         public void scaleRecipe()
         {
+            //check if there are any recipes in the list. if not error message is given
             if (recipes.Count == 0)
             {
                 Console.WriteLine("No recipes found. Please enter a recipe first.");
+                return;
             }
-
+            //list of recipes to scale
             Console.WriteLine("Select a recipe to scale: ");
             for (int i = 0; i < recipes.Count; i++)
             {
+                //displays then index and name of each recipe
                 Console.WriteLine($"{i + 1}. {recipes[i].Name}");
             }
 
             Console.Write("Enter the recipe number: ");
             int recipeNumber = int.Parse(Console.ReadLine());
 
+            //checks if valid recipe number
             if (recipeNumber < 1 || recipeNumber > recipes.Count)
             {
                 Console.WriteLine("Invalid recipe number.");
                 return;
             }
 
+            //store scaling factor
             double scalingFactor;
+            //store validity
             bool validScalingFactor;
 
+            //loop to ensure that valid scaling factor
             do
-            {
+            {   
                 Console.Write("Enter scaling factor (0.5, 2, or 3): ");
                 string factor = Console.ReadLine();
+                //ensures that entered scaling factor is either 0.5, 2 or 3
                 validScalingFactor = double.TryParse(factor, out scalingFactor) && (scalingFactor == 0.5 || scalingFactor == 2 || scalingFactor == 3);
-
+                //if factor is not valid error message
                 if (!validScalingFactor)
                 {
                     Console.WriteLine("Invalid scaling factor. Please enter 0.5, 2, or 3.");
                 }
-            } while (!validScalingFactor);
+            } while (!validScalingFactor);  //repeat until valid
 
+            //get recipe wobject with correct selected number
             Recipe selectedRecipe = recipes[recipeNumber - 1];
+            //scale the selected recipe
             selectedRecipe.scaleRecipe(scalingFactor);
 
             Console.WriteLine($"\nRecipe '{selectedRecipe.Name}' has been scaled by a factor of {scalingFactor}.");
+            //display the updated ingredient quantities of scaled recipe
             Console.WriteLine("Updated ingredient quantities: ");
             selectedRecipe.displayIngredients();
         }
 
-        public void ResetQuantities()
+        public void resetQuantities()
         {
+            //check if recipes exist
             if (recipes.Count == 0)
             {
                 Console.WriteLine("No recipes found. Please enter a recipe first.");
                 return;
             }
-
+            //display a list of recipes 
             Console.WriteLine("Select a recipe to reset quantities: ");
             for (int i = 0; i < recipes.Count; i++)
             {
+                //index and name of each recipe
                 Console.WriteLine($"{i + 1}. {recipes[i].Name}");
             }
 
@@ -315,32 +377,34 @@ namespace PROG6221POEPart1.Class
             }
 
             Recipe selectedRecipe = recipes[recipeNumber - 1];
+            //reset the qauntities of ingredietns in the selected recipe
             selectedRecipe.resetQuantity();
 
             Console.WriteLine($"Ingredient quantities for '{selectedRecipe.Name}' have been reset to original values.");
         }
 
-        public void ClearRecipe()
+        public void clearRecipe()
         {
             Console.WriteLine("Are you sure you want to clear ALL recipe data? (yes/no)");
             string confirmation = Console.ReadLine();
 
+            //check the users choice
             if (string.Equals(confirmation, "yes", StringComparison.OrdinalIgnoreCase))
             {
+                //if yes then clears the list
                 recipes.Clear();
                 Console.WriteLine("All recipe data has been cleared.");
             }
             else if (string.Equals(confirmation, "no", StringComparison.OrdinalIgnoreCase))
             {
+                //recipes are not delted if they
                 Console.WriteLine("Recipes were not deleted");
             }
             else
             {
+                //if invalid response is entered
                 Console.WriteLine("Please enter 'yes' or 'no'.");
             }
-
-
-
         }
     }
 }

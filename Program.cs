@@ -13,7 +13,6 @@ namespace PROG6221POEPart1
     {
         static void Main(string[] args)
         {
-            //PROG6221POEPart1.Class.Class1 cls1 = new Class.Class1();
 
             Class1 recipeManager = new Class1();
             bool conLoop = true;
@@ -42,7 +41,10 @@ namespace PROG6221POEPart1
                     case 3: recipeManager.scaleRecipe();
                         DisplayMenu(recipeManager);
                         break;
-                    case 4: recipeManager.ResetQuantities();
+                    case 4: recipeManager.resetQuantities();
+                        DisplayMenu(recipeManager);
+                        break;
+                    case 5: recipeManager.clearRecipe();
                         DisplayMenu(recipeManager);
                         break;
                     case 6: conLoop = false;

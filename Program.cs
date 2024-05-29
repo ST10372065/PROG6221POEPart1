@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PROG6221POEPart1
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {

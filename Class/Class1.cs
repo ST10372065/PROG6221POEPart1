@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PROG6221POEPart1.Class
 {
-    internal class Class1
+    public class Class1
     {
         private List<Recipe> recipes = new List<Recipe>();
         public delegate void ExceededCaloriesDelegate(string message);
 
-        class Recipe
+        public class Recipe
         {
             public string Name { get; set; }
             private List<Ingredient> ingredients = new List<Ingredient>();
@@ -21,6 +21,14 @@ namespace PROG6221POEPart1.Class
             public Recipe(string name)
             {
                 Name = name;
+            }
+
+            public int TotalCalories
+            {
+                get
+                {
+                    return ingredients.Sum(ingredient => ingredient.Calories);
+                }
             }
 
             public void addIngredient(Ingredient ingredient)
@@ -126,7 +134,7 @@ namespace PROG6221POEPart1.Class
             string name = "";
             double quantity = 0;
             string unit = "";
-
+            
             Console.WriteLine("Please enter the recipe name: ");
             string recipeName = Console.ReadLine();
 

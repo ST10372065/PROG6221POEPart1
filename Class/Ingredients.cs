@@ -14,6 +14,9 @@ namespace PROG6221POEPart1.Class
         private double originalQuantity;
         private string originalUnit;
 
+        public int Calories { get; set; }
+        public string FoodGroup { get; set; }
+
         //constructor for ingredient properties
         public Ingredient(string name, double quantity, string unit)
         {
@@ -23,6 +26,8 @@ namespace PROG6221POEPart1.Class
             originalQuantity = quantity;
             originalUnit = unit;
         }
+
+
 
         //method to scale quantities of the ingredients
         public void ScaleQuantity(double scalingFactor)

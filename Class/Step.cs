@@ -8,7 +8,9 @@ namespace PROG6221POEPart1.Class
 {
     public class Step
     {
-        //getter and setter
+        /// <summary>
+        /// description of the step
+        /// </summary>
         public string Description { get; set; }
         public Step(string description)
         {

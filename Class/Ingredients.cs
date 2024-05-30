@@ -17,7 +17,12 @@ namespace PROG6221POEPart1.Class
         public int Calories { get; set; }
         public string FoodGroup { get; set; }
 
-        //constructor for ingredient properties
+        /// <summary>
+        /// constructor for the ingredient class
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="quantity"></param>
+        /// <param name="unit"></param>
         public Ingredient(string name, double quantity, string unit)
         {
             Name = name;
@@ -29,7 +34,10 @@ namespace PROG6221POEPart1.Class
 
 
 
-        //method to scale quantities of the ingredients
+        /// <summary>
+        /// scales the quantity of the ingredient by the scaling factor
+        /// </summary>
+        /// <param name="scalingFactor"></param>
         public void ScaleQuantity(double scalingFactor)
         {
             double scaledQuantity = originalQuantity * scalingFactor;
@@ -85,6 +93,10 @@ namespace PROG6221POEPart1.Class
             }
         }
 
+
+        /// <summary>
+        /// resets the quantity and unit of the ingredient to their original values
+        /// </summary>
         public void ResetQuantity()
         {//resets to original quantity
             Quantity = originalQuantity;

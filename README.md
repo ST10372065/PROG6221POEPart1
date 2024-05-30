@@ -1,4 +1,15 @@
-# Part 1
+# Part 2
+
+## Update
+
+Changes implemented from part one inclucde things such as, adding references, updating comments and small other bits. Ensured that all error handling was implemented so that a user can only enter valid data into the program when entering a recipe.
+Major change made was splitting code into different classes to better coding standards.
+Also emsured that .NET Framework 4.8 was being used.
+Almost all the error handling is done by While loops, as if the incorrect information is entered the user will be prompted to enter the information again. This is mainly done in the recipeDetails method as that is where the user enteres the most data.
+
+
+
+
 ## Recipe management application
 
 This application is used to store and scale recipes. This applications allows the user to enter recipe of their choice and then lets the user decided on what they would like the application to do. This includes things such as: 

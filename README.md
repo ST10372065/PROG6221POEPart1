@@ -1,13 +1,10 @@
-# Part 2
-
-## Update
+# Update
 
 Changes implemented from part one inclucde things such as, adding references, updating comments and small other bits. Ensured that all error handling was implemented so that a user can only enter valid data into the program when entering a recipe.
 Major change made was splitting code into different classes to better coding standards.
 Also emsured that .NET Framework 4.8 was being used.
 Almost all the error handling is done by While loops, as if the incorrect information is entered the user will be prompted to enter the information again. This is mainly done in the recipeDetails method as that is where the user enteres the most data.
-
-
+All files now contain end of file lines.
 
 
 ## Recipe management application
@@ -20,7 +17,11 @@ This application is used to store and scale recipes. This applications allows th
 * Clearing recipes
 
 ### Using the application
-Apon starting the application the user is given 6 prompts which they can enter. Only one will work as a recipe needs to be entered before any other methods are able to be used.
+Download the zip file onto your device and launch Visual Studio Community.
+
+After selecting the project in Visual Studio Community, the user must then run the project (the green button in the ribbon).
+
+Once the application is running the user is given 6 prompts which they can enter. Only one will work as a recipe needs to be entered before any other methods are able to be used.
 
 After entering a recipe name the user is given prompts to enter how many ingredients, name of ingredient, quantity of the ingredient and finally the unit of measurement of that ingredient.
 
